@@ -5,8 +5,8 @@
  */
 package view;
 
-import PubModel.Landlord;
-import PubModel.Strategies.IDrinksStrategy;
+import PubModel.LandLord;
+import PubModel.LandlordFactory;
 import java.util.Scanner;
 /**
  * This is a simple command line pub simulator. This is the view/controller 
@@ -21,7 +21,7 @@ public class PubSimulator {
      */
     public static void main(String[] args) {
         // create a new landlord
-        Landlord Mary = new Landlord();
+        LandlordFactory Mary = new LandLord();
         
         // try to serve without customer input
         System.out.println(Mary.serveDrink());
@@ -40,7 +40,7 @@ public class PubSimulator {
      * 
      * @param landlord A Landlord object.
      */
-    public static void SimulateCustomer(Landlord landlord){
+    public static void SimulateCustomer(LandlordFactory landlord){
         System.out.println(landlord.askCustomer());
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
@@ -48,7 +48,8 @@ public class PubSimulator {
             System.exit(0);
         }
         String info;
-        landlord.setStrategy(Landlord.selectStrategy(answer));
+      
+        landlord.setStrategy(landlord.selectStrategy(answer));
         info = landlord.serveDrink();
         System.out.println(info);
     }
