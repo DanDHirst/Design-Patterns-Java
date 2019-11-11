@@ -5,8 +5,9 @@
  */
 package view;
 
-import PubModel.LandLord;
-import PubModel.LandlordFactory;
+import PubModelLandlord.LandLord;
+import PubModelLandlord.LandlordFactory;
+import controller.PubStratController;
 import java.util.Scanner;
 /**
  * This is a simple command line pub simulator. This is the view/controller 
@@ -21,15 +22,20 @@ public class PubSimulator {
      */
     public static void main(String[] args) {
         // create a new landlord
+        PubGui view = new PubGui();
+        
         LandlordFactory Mary = new LandLord();
+        PubStratController controller = new PubStratController(view,Mary);
+        controller.setButtonListener();
+        view.setVisible(true);
         
         // try to serve without customer input
-        System.out.println(Mary.serveDrink());
-        
-        // simulate in a loop
-        for (int i=0; i<10; i++){
-            SimulateCustomer(Mary);
-        }
+//        System.out.println(Mary.serveDrink());
+//        
+//        // simulate in a loop
+//        for (int i=0; i<10; i++){
+//            SimulateCustomer(Mary);
+//        }
         
     }
     

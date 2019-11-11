@@ -5,10 +5,9 @@
  */
 package view;
 
-import PubModel.LandLord;
-import PubModel.LandlordFactory;
-import java.util.Scanner;
-import static view.PubSimulator.SimulateCustomer;
+import PubModelLandlord.LandLord;
+import PubModelLandlord.LandlordFactory;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -19,17 +18,10 @@ public class PubGui extends javax.swing.JFrame {
     /**
      * Creates new form PubGui
      */
-    LandlordFactory Mary = new LandLord();
     public PubGui() {
         initComponents();
-        askCustomer();
     }
   
-    public void askCustomer(){
-        txtSteps.setText("");
-        txtSteps.setText(Mary.serveDrink());
-        txtSteps.setText(txtSteps.getText() + Mary.askCustomer());
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,52 +88,28 @@ public class PubGui extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        String answer = txtDrinkInput.getText();
-        if (answer.equals("quit")){
-            System.exit(0);
-        }
-        String info;
-      
-        Mary.setStrategy(Mary.selectStrategy(answer));
-        info = Mary.serveDrink();
-        txtSteps.setText(info);
+        
     }//GEN-LAST:event_btnGetDrinkActionPerformed
 
+    public void setTextSteps(String steps){
+        txtSteps.setText(steps);
+    }
+    public String getTextSteps(){
+        return txtSteps.getText();
+    }
+    public String getDrinkInput(){
+        return txtDrinkInput.getText();
+    }
+    public void setDrinkInput(String drinkInput){
+        txtDrinkInput.setText(drinkInput);
+    }
+    public void setButtonListener(ActionListener e){
+        btnGetDrink.addActionListener(e);
+    }
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PubGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PubGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PubGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PubGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PubGui().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGetDrink;
     private javax.swing.JTextField txtDrinkInput;
